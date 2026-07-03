@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>HDI Insight AI</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="overlay"></div>
+
+<div class="container">
+
+<h1>🌍 HDI Insight AI</h1>
+
+<p class="subtitle">
+Predict Human Development Index using Machine Learning
+</p>
+
+<form method="POST">
+
+<div class="input-group">
+
+<label>❤️ Life Expectancy</label>
+
+<input type="number"
+step="any"
+name="life_expectancy"
+placeholder="Enter Life Expectancy"
+required>
+
+</div>
+
+<div class="input-group">
+
+<label>🎓 Expected Years of Schooling</label>
+
+<input type="number"
+step="any"
+name="schooling"
+placeholder="Enter Schooling Years"
+required>
+
+</div>
+
+<div class="input-group">
+
+<label>💰 Gross National Income</label>
+
+<input type="number"
+step="any"
+name="income"
+placeholder="Enter Income"
+required>
+
+</div>
+
+<button type="submit">
+Predict HDI
+</button>
+
+</form>
+
+{% if prediction %}
+
+<div class="result">
+
+<h2>Prediction Result</h2>
+
+<div class="score">
+
+{{ "%.3f"|format(prediction) }}
+
+</div>
+
+{% if prediction >= 0.8 %}
+<p class="high">🟢 Very High Human Development</p>
+
+{% elif prediction >=0.7 %}
+<p class="good">🔵 High Human Development</p>
+
+{% elif prediction >=0.55 %}
+<p class="medium">🟠 Medium Human Development</p>
+
+{% else %}
+<p class="low">🔴 Low Human Development</p>
+
+{% endif %}
+
+</div>
+
+{% endif %}
+
+</div>
+
+</body>
+
+</html>
